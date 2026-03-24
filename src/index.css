@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  --color-albatros-navy: #002B5B;
+  --color-albatros-blue: #00A8E8;
+  --color-albatros-light: #F0F7FF;
+}
