@@ -1,13 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import logo from './logo.jpg';
@@ -93,9 +83,6 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-albatros-blue text-white px-6 py-2.5 rounded-md text-sm font-bold uppercase tracking-widest hover:bg-albatros-navy transition-all shadow-lg shadow-albatros-blue/20">
-              TEKLİF AL
-            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -149,8 +136,9 @@ const Hero = () => {
     {
       image: logo,
       isLogo: true,
-      subtitle: "Arif Erdur",
-      description:"Arif Erdur Yakup Yusuf"
+      title: "ALBATROS",
+      subtitle: "LOJİSTİK ÇÖZÜMLERİ",
+      description: "Güvenilir, hızlı ve profesyonel taşımacılık hizmetleri."
     },
     {
       image: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=2000",
@@ -164,12 +152,6 @@ const Hero = () => {
       subtitle: "TAŞIMACILIK",
       description: "Eşyalarınız bizimle güvende. Sigortalı ve profesyonel paketleme hizmetimizle huzurlu bir taşınma deneyimi yaşayın."
     },
-    {
-      image: "https://images.unsplash.com/photo-1501700493717-9c998ece7a02?auto=format&fit=crop&q=80&w=2000",
-      title: "GLOBAL",
-      subtitle: "LOJİSTİK AĞI",
-      description: "Sınırları aşan çözümler. Deniz, hava ve kara yolu taşımacılığında dünya genelinde geniş acente ağımızla hizmetinizdeyiz."
-    }
   ];
 
   useEffect(() => {
@@ -180,7 +162,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden bg-albatros-navy">
+    <section className="relative h-[60vh] flex items-center overflow-hidden bg-albatros-navy">
       {/* Slider Background */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -190,12 +172,12 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute inset-0"
+            className={`absolute inset-0 ${slides[currentSlide].isLogo ? 'flex justify-end' : ''}`}
           >
             <img 
               src={slides[currentSlide].image} 
               alt="Albatros" 
-              className={`w-full h-full transition-all duration-1000 ${slides[currentSlide].isLogo ? 'object-contain p-12 md:p-32 opacity-100' : 'object-cover object-center opacity-60 mix-blend-overlay'}`}
+              className={`h-full transition-all duration-1000 ${slides[currentSlide].isLogo ? 'w-full md:w-1/2 object-contain p-8 md:p-20 opacity-100' : 'w-full object-cover object-center opacity-60 mix-blend-overlay'}`}
               referrerPolicy="no-referrer"
             />
           </motion.div>
@@ -205,7 +187,7 @@ const Hero = () => {
         )}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <div className="relative z-10 w-full px-4 sm:px-32 md:px-56 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -213,23 +195,16 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className={`max-w-3xl ${slides[currentSlide].isLogo ? 'md:w-1/2' : ''}`}
           >
-            {!slides[currentSlide].isLogo && (
-              <>
-                <div className="inline-flex items-center bg-albatros-blue/20 backdrop-blur-md border border-albatros-blue/30 px-4 py-2 rounded-full mb-6">
-                  <ShieldCheck className="w-4 h-4 text-albatros-blue mr-2" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-albatros-blue">Güvenli & Profesyonel Lojistik</span>
-                </div>
-                <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 tracking-tighter">
-                  {slides[currentSlide].title} <br />
-                  <span className="text-albatros-blue">{slides[currentSlide].subtitle}</span>
-                </h1>
-                <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl font-medium">
-                  {slides[currentSlide].description}
-                </p>
-              </>
-            )}
+          
+            <h1 className="text-2xl md:text-4xl font-black leading-tight mb-6 tracking-tighter">
+              {slides[currentSlide].title} <br />
+              <span className="text-albatros-blue">{slides[currentSlide].subtitle}</span>
+            </h1>
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl font-medium">
+              {slides[currentSlide].description}
+            </p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -357,21 +332,11 @@ const WhyChooseUs = () => {
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800" 
-                  alt="Lojistik Depo" 
-                  className="rounded-2xl shadow-2xl h-80 w-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-                <img 
                   src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=800" 
                   alt="Nakliyat Kamyonu" 
                   className="rounded-2xl shadow-2xl h-80 w-full object-cover mt-12"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-              <div className="absolute -bottom-10 -left-10 bg-albatros-navy text-white p-10 rounded-2xl shadow-2xl hidden md:block">
-                <div className="text-5xl font-black mb-2">25+</div>
-                <div className="text-xs font-bold uppercase tracking-[0.2em] text-albatros-blue">Yıllık Tecrübe</div>
               </div>
             </div>
           </div>
@@ -416,10 +381,6 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div>
             <h2 className="text-albatros-blue font-black tracking-[0.3em] uppercase text-sm mb-4">İletişim</h2>
-            <h3 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter leading-tight">Hemen Bir <br /> Çözüm Üretelim</h3>
-            <p className="text-gray-400 mb-16 text-xl font-medium max-w-md">
-              Lojistik ihtiyaçlarınız için uzman danışmanlarımız 7/24 hizmetinizdedir.
-            </p>
 
             <div className="space-y-10">
               <div className="flex items-center gap-8 group">
@@ -450,38 +411,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="bg-white rounded-2xl p-10 md:p-16 text-albatros-navy shadow-2xl">
-            <h4 className="text-3xl font-black mb-8 tracking-tight">Hızlı Teklif Alın</h4>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Ad Soyad</label>
-                  <input type="text" className="w-full px-5 py-4 rounded-md bg-albatros-light border-none focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="John Doe" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Telefon</label>
-                  <input type="tel" className="w-full px-5 py-4 rounded-md bg-albatros-light border-none focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="05XX XXX XX XX" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Taşıma Türü</label>
-                <select className="w-full px-5 py-4 rounded-md bg-albatros-light border-none focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold appearance-none">
-                  <option>Evden Eve Nakliyat</option>
-                  <option>Ofis Taşımacılığı</option>
-                  <option>Uluslararası Lojistik</option>
-                  <option>Eşya Depolama</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Mesajınız</label>
-                <textarea rows={4} className="w-full px-5 py-4 rounded-md bg-albatros-light border-none focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="Detayları buraya yazın..."></textarea>
-              </div>
-              <button className="w-full bg-albatros-blue text-white py-5 rounded-md font-black text-lg uppercase tracking-[0.2em] hover:bg-albatros-navy transition-all shadow-2xl shadow-albatros-blue/40">
-                TEKLİFİ GÖNDER
-              </button>
-            </form>
           </div>
         </div>
       </div>
@@ -517,7 +446,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-300 text-base leading-relaxed font-medium mb-8">
-              25 yılı aşkın tecrübemizle, eşyalarınızı sadece taşımıyor, güveninizi geleceğe ulaştırıyoruz. Profesyonel kadromuz ve modern filomuzla hizmetinizdeyiz.
+              Eşyalarınızı sadece taşımıyor, güveninizi geleceğe ulaştırıyoruz. Profesyonel kadromuz ve modern filomuzla hizmetinizdeyiz.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-albatros-blue hover:border-albatros-blue transition-all duration-300 group">
@@ -545,21 +474,6 @@ const Footer = () => {
               <li><a href="#hizmetler" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Hizmetlerimiz</a></li>
               <li><a href="#hakkimizda" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Hakkımızda</a></li>
               <li><a href="#iletisim" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> İletişim</a></li>
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Blog</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="text-white font-black uppercase tracking-widest text-sm mb-10 relative inline-block">
-              Hizmetlerimiz
-              <span className="absolute -bottom-2 left-0 w-8 h-1 bg-albatros-blue"></span>
-            </h5>
-            <ul className="space-y-4 font-bold text-gray-300">
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Evden Eve Nakliyat</a></li>
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Ofis Taşımacılığı</a></li>
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Uluslararası Lojistik</a></li>
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Eşya Depolama</a></li>
-              <li><a href="#" className="hover:text-albatros-blue transition-colors flex items-center"><ChevronRight className="w-4 h-4 mr-2 text-albatros-blue/50" /> Paketleme Hizmeti</a></li>
             </ul>
           </div>
 
@@ -588,11 +502,6 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10 gap-8">
           <div className="text-xs font-bold uppercase tracking-[0.2em] text-white text-center md:text-left">
             © 2026 ALBATROS NAKLİYE & LOJİSTİK. TÜM HAKLARI SAKLIDIR.
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 font-black text-[10px] uppercase tracking-[0.3em] text-white/60">
-            <a href="#" className="hover:text-white transition-colors">Gizlilik Politikası</a>
-            <a href="#" className="hover:text-white transition-colors">Kullanım Şartları</a>
-            <a href="#" className="hover:text-white transition-colors">KVKK Aydınlatma</a>
           </div>
         </div>
       </div>
