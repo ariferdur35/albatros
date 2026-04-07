@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-const logo = '/logo.jpg?v=1';
+
+import logo from './assets/logo.png';
+
 import { 
   Truck, 
   Home, 
@@ -55,7 +57,6 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="Albatros Nakliye Logo" 
-                referrerPolicy="no-referrer"
                 className="h-10 w-10 rounded-md object-cover"
               />
               <div className="absolute -right-1 -top-1 w-3 h-3 bg-albatros-blue rounded-full"></div>
@@ -453,7 +454,6 @@ const Footer = () => {
                 <img 
                   src={logo} 
                   alt="Albatros Nakliye Logo" 
-                  referrerPolicy="no-referrer"
                   className="h-10 w-10 rounded-md object-cover"
                 />
               </div>
