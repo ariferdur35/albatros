@@ -47,26 +47,23 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 backdrop-blur-md py-3 border-b border-albatros-blue/20'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center group cursor-pointer">
-            <div className={`relative p-1 rounded-full transition-all duration-500 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/20 backdrop-blur-sm'}`}>
+            <div className="relative p-1 rounded-lg bg-white shadow-sm transition-all duration-500">
               <img 
                 src={logo} 
-                alt="Albatros Nakliyat Logo" 
-                className="h-10 w-10 rounded-full object-cover"
+                alt="Albatros Nakliye Logo" 
+                className="h-10 w-10 rounded-md object-cover"
               />
-              <Wind className="absolute -right-1 -top-1 w-4 h-4 text-albatros-blue animate-pulse" />
-              {!isScrolled && (
-                <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-pulse"></div>
-              )}
+              <div className="absolute -right-1 -top-1 w-3 h-3 bg-albatros-blue rounded-full"></div>
             </div>
             <div className="ml-3 flex flex-col leading-tight">
-              <span className={`text-xl font-black tracking-tighter ${isScrolled ? 'text-albatros-navy' : 'text-white'}`}>
+              <span className="text-xl font-black tracking-tighter text-albatros-navy">
                 ALBATROS
               </span>
-              <span className={`text-[10px] font-bold tracking-[0.2em] uppercase ${isScrolled ? 'text-albatros-blue' : 'text-albatros-blue'}`}>
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-albatros-blue">
                 NAKLİYE & LOJİSTİK
               </span>
             </div>
@@ -78,9 +75,10 @@ const Navbar = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className={`text-sm font-bold uppercase tracking-wider transition-colors hover:text-albatros-blue ${isScrolled ? 'text-albatros-navy' : 'text-white'}`}
+                className="text-sm font-bold uppercase tracking-wider transition-colors text-albatros-navy hover:text-albatros-blue relative group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-albatros-blue transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </div>
@@ -89,7 +87,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`${isScrolled ? 'text-albatros-navy' : 'text-white'}`}
+              className="text-albatros-navy"
             >
               {isMobileMenuOpen ? <X /> : <Menu />}
             </button>
@@ -162,49 +160,54 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-[60vh] flex items-center overflow-hidden bg-albatros-navy">
+    <section className="relative h-[60vh] flex items-center overflow-hidden bg-albatros-light pt-20">
       {/* Slider Background */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             className={`absolute inset-0 ${slides[currentSlide].isLogo ? 'flex justify-end' : ''}`}
           >
             <img 
               src={slides[currentSlide].image} 
               alt="Albatros" 
-              className={`h-full transition-all duration-1000 ${slides[currentSlide].isLogo ? 'w-full md:w-1/2 object-contain p-8 md:p-20 opacity-100' : 'w-full object-cover object-center opacity-60 mix-blend-overlay'}`}
+              className={`h-full transition-all duration-1000 ${slides[currentSlide].isLogo ? 'w-full md:w-1/2 object-contain p-8 md:p-20 opacity-100' : 'w-full object-cover object-center opacity-40 mix-blend-multiply'}`}
               referrerPolicy="no-referrer"
             />
           </motion.div>
         </AnimatePresence>
         {!slides[currentSlide].isLogo && (
-          <div className="absolute inset-0 bg-gradient-to-b from-albatros-navy/40 via-albatros-navy/80 to-albatros-navy"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-albatros-light via-albatros-light/80 to-transparent"></div>
         )}
       </div>
 
-      <div className="relative z-10 w-full px-4 sm:px-32 md:px-56 text-white">
+      <div className="relative z-10 w-full px-4 sm:px-32 md:px-56">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 30 }}
+            transition={{ duration: 0.6 }}
             className={`max-w-3xl ${slides[currentSlide].isLogo ? 'md:w-1/2' : ''}`}
           >
           
-            <h1 className="text-2xl md:text-4xl font-black leading-tight mb-6 tracking-tighter">
+            <h1 className="text-3xl md:text-5xl font-black leading-tight mb-6 tracking-tighter text-albatros-navy">
               {slides[currentSlide].title} <br />
               <span className="text-albatros-blue">{slides[currentSlide].subtitle}</span>
             </h1>
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl font-medium">
+            <p className="text-base md:text-xl text-gray-600 leading-relaxed max-w-xl font-medium">
               {slides[currentSlide].description}
             </p>
+            <div className="mt-10">
+              <button className="bg-albatros-blue text-white px-8 py-4 rounded-md font-bold uppercase tracking-widest hover:bg-albatros-navy transition-all shadow-xl shadow-albatros-blue/20">
+                Hemen Başlayın
+              </button>
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -371,20 +374,19 @@ const WhyChooseUs = () => {
 
 const Contact = () => {
   return (
-    <section id="iletisim" className="py-32 bg-albatros-navy text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-         <Globe className="absolute -right-20 -bottom-20 w-[600px] h-[600px]" />
-      </div>
-
+    <section id="iletisim" className="py-32 bg-white text-albatros-navy relative overflow-hidden border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div>
             <h2 className="text-albatros-blue font-black tracking-[0.3em] uppercase text-sm mb-4">İletişim</h2>
+            <h3 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter leading-tight">Bize Ulaşın</h3>
+            <p className="text-gray-600 mb-16 text-xl font-medium max-w-md">
+              Lojistik ihtiyaçlarınız için uzman danışmanlarımız 7/24 hizmetinizdedir.
+            </p>
 
             <div className="space-y-10">
               <div className="flex items-center gap-8 group">
-                <div className="bg-white/5 p-5 rounded-full border border-white/10 group-hover:bg-albatros-blue transition-all duration-300">
+                <div className="bg-albatros-light p-5 rounded-full border border-gray-100 group-hover:bg-albatros-blue transition-all duration-300">
                   <Phone className="w-7 h-7 text-albatros-blue group-hover:text-white" />
                 </div>
                 <div>
@@ -393,7 +395,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex items-center gap-8 group">
-                <div className="bg-white/5 p-5 rounded-full border border-white/10 group-hover:bg-albatros-blue transition-all duration-300">
+                <div className="bg-albatros-light p-5 rounded-full border border-gray-100 group-hover:bg-albatros-blue transition-all duration-300">
                   <Mail className="w-7 h-7 text-albatros-blue group-hover:text-white" />
                 </div>
                 <div>
@@ -402,7 +404,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="flex items-center gap-8 group">
-                <div className="bg-white/5 p-5 rounded-full border border-white/10 group-hover:bg-albatros-blue transition-all duration-300">
+                <div className="bg-albatros-light p-5 rounded-full border border-gray-100 group-hover:bg-albatros-blue transition-all duration-300">
                   <MapPin className="w-7 h-7 text-albatros-blue group-hover:text-white" />
                 </div>
                 <div>
@@ -412,6 +414,27 @@ const Contact = () => {
               </div>
             </div>
           </div>
+          
+          <div className="bg-albatros-light rounded-2xl p-10 shadow-xl border border-gray-100">
+            <h4 className="text-2xl font-black mb-8 tracking-tight text-albatros-navy">Hızlı İletişim Formu</h4>
+            <form className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Ad Soyad</label>
+                <input type="text" className="w-full px-5 py-4 rounded-md bg-white border border-gray-200 focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="Adınız Soyadınız" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">E-posta</label>
+                <input type="email" className="w-full px-5 py-4 rounded-md bg-white border border-gray-200 focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="eposta@adresiniz.com" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Mesajınız</label>
+                <textarea rows={4} className="w-full px-5 py-4 rounded-md bg-white border border-gray-200 focus:ring-2 focus:ring-albatros-blue outline-none transition-all font-bold" placeholder="Mesajınızı buraya yazın..."></textarea>
+              </div>
+              <button className="w-full bg-albatros-blue text-white py-5 rounded-md font-black text-lg uppercase tracking-[0.2em] hover:bg-albatros-navy transition-all shadow-xl shadow-albatros-blue/20">
+                GÖNDER
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -420,24 +443,20 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-albatros-navy text-white py-24 border-t border-white/10 relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-albatros-blue/5 rounded-full blur-3xl -z-0 translate-x-1/2 -translate-y-1/2"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-          <div className="col-span-1 lg:col-span-1">
+    <footer className="bg-albatros-navy py-20 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
+          <div>
             <div className="flex items-center mb-8">
-              <div className="bg-white p-1 rounded-full relative shadow-xl shadow-albatros-blue/20">
+              <div className="p-1 rounded-lg bg-white shadow-sm">
                 <img 
                   src={logo} 
-                  alt="Albatros Nakliyat Logo" 
-                  className="h-12 w-12 rounded-full object-cover"
+                  alt="Albatros Nakliye Logo" 
+                  className="h-10 w-10 rounded-md object-cover"
                 />
-                <Wind className="absolute -right-1 -top-1 w-5 h-5 text-albatros-blue" />
               </div>
-              <div className="ml-4 flex flex-col leading-tight">
-                <span className="text-2xl font-black tracking-tighter text-white">
+              <div className="ml-3 flex flex-col leading-tight">
+                <span className="text-xl font-black tracking-tighter text-white">
                   ALBATROS
                 </span>
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-albatros-blue">
@@ -450,23 +469,23 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-albatros-blue hover:border-albatros-blue transition-all duration-300 group">
-                <Instagram className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                <Instagram className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-albatros-blue hover:border-albatros-blue transition-all duration-300 group">
-                <Facebook className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                <Facebook className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-albatros-blue hover:border-albatros-blue transition-all duration-300 group">
-                <Linkedin className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                <Twitter className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-albatros-blue hover:border-albatros-blue transition-all duration-300 group">
-                <Twitter className="w-5 h-5 text-gray-300 group-hover:text-white" />
+                <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
             </div>
           </div>
 
           <div>
             <h5 className="text-white font-black uppercase tracking-widest text-sm mb-10 relative inline-block">
-              Kurumsal
+              Hızlı Menü
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-albatros-blue"></span>
             </h5>
             <ul className="space-y-4 font-bold text-gray-300">
@@ -482,24 +501,24 @@ const Footer = () => {
               Bize Ulaşın
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-albatros-blue"></span>
             </h5>
-            <div className="space-y-6 text-gray-300 font-medium">
-              <div className="flex items-start gap-4">
+            <ul className="space-y-6 font-bold text-gray-300">
+              <li className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-albatros-blue shrink-0 mt-1" />
-                <p>Lojistik Plaza, No:12, <br /> Kağıthane, İstanbul</p>
-              </div>
-              <div className="flex items-center gap-4">
+                <span>İstanbul, Türkiye</span>
+              </li>
+              <li className="flex items-center gap-4">
                 <Phone className="w-5 h-5 text-albatros-blue shrink-0" />
-                <p>+90 (212) 555 00 00</p>
-              </div>
-              <div className="flex items-center gap-4">
+                <span>+90 (212) 555 00 00</span>
+              </li>
+              <li className="flex items-center gap-4">
                 <Mail className="w-5 h-5 text-albatros-blue shrink-0" />
-                <p>info@albatrosnakliyat.com</p>
-              </div>
-            </div>
+                <span>info@albatrosnakliyat.com</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10 gap-8">
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-xs font-bold uppercase tracking-[0.2em] text-white text-center md:text-left">
             © 2026 ALBATROS NAKLİYE & LOJİSTİK. TÜM HAKLARI SAKLIDIR.
           </div>
@@ -520,16 +539,6 @@ export default function App() {
       <WhyChooseUs />
       <Contact />
       <Footer />
-      
-      {/* Floating Action Button for Mobile */}
-      <div className="fixed bottom-8 right-8 z-40 md:hidden">
-        <a 
-          href="tel:+902125550000" 
-          className="bg-albatros-blue text-white p-5 rounded-full shadow-2xl flex items-center justify-center animate-pulse"
-        >
-          <Phone className="w-7 h-7" />
-        </a>
-      </div>
     </div>
   );
 }
