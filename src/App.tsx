@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import logo from './assets/logo.jpg';
+const logo = '/logo.jpg';
 import { 
   Truck, 
   Home, 
